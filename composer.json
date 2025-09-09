@@ -1,0 +1,20 @@
+{
+    "name": "inec-results/portal",
+    "description": "INEC Election Results Portal - PHP Backend",
+    "type": "project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "InecResults\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "cd public && php -S 0.0.0.0:8000"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
