@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Backend Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .test { margin: 15px 0; padding: 15px; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+        .warning { background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; }
+        button { padding: 10px 20px; margin: 5px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-warning { background: #ffc107; color: black; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Railway Backend Test Page</h1>
+        <p>This page tests the Railway backend directly without CORS issues.</p>
+        
+        <div id="results"></div>
+        
+        <div style="margin-top: 20px;">
+            <button class="btn-primary" onclick="testAll()">Run All Tests</button>
+            <button class="btn-success" onclick="testBasic()">Test Basic</button>
+            <button class="btn-warning" onclick="testJSON()">Test JSON</button>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <h3>Direct Links:</h3>
+            <ul>
+                <li><a href="basic-test.php" target="_blank">Basic Test (PHP)</a></li>
+                <li><a href="simple-test.php" target="_blank">Simple Test (JSON)</a></li>
+                <li><a href="force-cors.php" target="_blank">Force CORS (JSON)</a></li>
+                <li><a href="api/health.php" target="_blank">Health Check</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE_URL = window.location.origin;
+        const results = document.getElementById('results');
+        
+        function addResult(title, content, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test ${type}`;
+            div.innerHTML = `<h3>${title}</h3><pre>${content}</pre>`;
+            results.appendChild(div);
+        }
+        
+        function clearResults() {
+            results.innerHTML = '';
+        }
+        
+        async function testBasic() {
+            clearResults();
+            try {
+                addResult('Basic Test', 'Testing basic-test.php...', 'info');
+                const response = await fetch(`${API_BASE_URL}/basic-test.php`);
+                const text = await response.text();
+                addResult('Basic Test Result', `Status: ${response.status}\nResponse:\n${text}`, response.ok ? 'success' : 'error');
+            } catch (error) {
+                addResult('Basic Test Error', error.message, 'error');
+            }
+        }
+        
+        async function testJSON() {
+            clearResults();
+            try {
+                addResult('JSON Test', 'Testing simple-test.php...', 'info');
+                const response = await fetch(`${API_BASE_URL}/simple-test.php`);
+                const text = await response.text();
+                addResult('JSON Test Result', `Status: ${response.status}\nResponse:\n${text}`, response.ok ? 'success' : 'error');
+            } catch (error) {
+                addResult('JSON Test Error', error.message, 'error');
+            }
+        }
+        
+        async function testAll() {
+            clearResults();
+            
+            // Test 1: Basic test
+            try {
+                addResult('Test 1: Basic Test', 'Testing basic-test.php...', 'info');
+                const basicResponse = await fetch(`${API_BASE_URL}/basic-test.php`);
+                const basicText = await basicResponse.text();
+                addResult('Test 1: Basic Test Result', `Status: ${basicResponse.status}\nResponse:\n${basicText}`, basicResponse.ok ? 'success' : 'error');
+            } catch (error) {
+                addResult('Test 1: Basic Test Error', error.message, 'error');
+            }
+            
+            // Test 2: JSON test
+            try {
+                addResult('Test 2: JSON Test', 'Testing simple-test.php...', 'info');
+                const jsonResponse = await fetch(`${API_BASE_URL}/simple-test.php`);
+                const jsonText = await jsonResponse.text();
+                addResult('Test 2: JSON Test Result', `Status: ${jsonResponse.status}\nResponse:\n${jsonText}`, jsonResponse.ok ? 'success' : 'error');
+            } catch (error) {
+                addResult('Test 2: JSON Test Error', error.message, 'error');
+            }
+            
+            // Test 3: Force CORS
+            try {
+                addResult('Test 3: Force CORS', 'Testing force-cors.php...', 'info');
+                const corsResponse = await fetch(`${API_BASE_URL}/force-cors.php`);
+                const corsText = await corsResponse.text();
+                addResult('Test 3: Force CORS Result', `Status: ${corsResponse.status}\nResponse:\n${corsText}`, corsResponse.ok ? 'success' : 'error');
+            } catch (error) {
+                addResult('Test 3: Force CORS Error', error.message, 'error');
+            }
+            
+            // Test 4: Health check
+            try {
+                addResult('Test 4: Health Check', 'Testing api/health.php...', 'info');
+                const healthResponse = await fetch(`${API_BASE_URL}/api/health.php`);
+                const healthText = await healthResponse.text();
+                addResult('Test 4: Health Check Result', `Status: ${healthResponse.status}\nResponse:\n${healthText}`, healthResponse.ok ? 'success' : 'error');
+            } catch (error) {
+                addResult('Test 4: Health Check Error', error.message, 'error');
+            }
+        }
+        
+        // Auto-run tests when page loads
+        window.addEventListener('load', testAll);
+    </script>
+</body>
+</html>
