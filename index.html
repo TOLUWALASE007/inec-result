@@ -158,12 +158,12 @@
 
     <script>
         // Configuration
-        const API_BASE_URL = 'https://your-actual-railway-url.railway.app'; // Replace with your actual Railway URL
+        const API_BASE_URL = 'https://inec-result-production.up.railway.app';
         
         // Check backend connection
         async function checkBackendStatus() {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/health`);
+                const response = await fetch(`${API_BASE_URL}/api/health.php`);
                 if (response.ok) {
                     document.getElementById('backend-status').innerHTML = 
                         '<span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Connected to Railway backend';
