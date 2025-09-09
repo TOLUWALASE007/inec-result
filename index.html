@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INEC Results Portal - Live Demo</title>
+    <title>INEC Results Portal - Complete Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,10 +24,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <h1 class="text-xl font-bold">INEC Results Portal - Live Demo</h1>
+                    <h1 class="text-xl font-bold">INEC Results Portal - Complete Solutions</h1>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <span class="text-sm">Frontend: GitHub Pages | Backend: Railway</span>
+                    <span class="text-sm">Frontend: GitHub Pages | Backend: Vercel</span>
                 </div>
             </div>
         </div>
@@ -37,213 +37,206 @@
         <!-- Hero Section -->
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900 mb-4">INEC Results Portal</h1>
-            <p class="text-xl text-gray-600 mb-8">Complete Implementation with Live Backend</p>
+            <p class="text-xl text-gray-600 mb-8">Complete Implementation of All Three Questions</p>
             
             <!-- Backend Status -->
             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl mx-auto mb-8">
                 <h2 class="text-lg font-semibold text-blue-900 mb-2">Backend Status</h2>
                 <div id="backend-status" class="text-sm">
                     <span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>
-                    Checking connection to Railway backend...
+                    Checking connection to Vercel backend...
+                </div>
+            </div>
+        </div>
+
+        <!-- Three Questions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <!-- Question 1 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-inec-blue text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">Question 1</h2>
+                    <p class="text-blue-100">Individual Polling Unit Results</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-4">Display results for any individual polling unit with chained selects (LGA → Ward → Polling Unit).</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Chained dropdown selects</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Delta State only (state_id = 25)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Results table display</span>
+                        </div>
+                    </div>
+                    <button onclick="testQuestion1()" class="mt-4 w-full bg-inec-blue text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Test Question 1
+                    </button>
                 </div>
             </div>
 
-            <!-- Quick Access Links -->
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto">
-                <h2 class="text-lg font-semibold text-gray-900 mb-4">Live Demo Links</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button onclick="loadQuestion1()" class="bg-inec-blue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                        Q1: Individual Polling Unit Results
+            <!-- Question 2 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-inec-green text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">Question 2</h2>
+                    <p class="text-green-100">LGA Summed Results</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-4">Display summed total results for all polling units under any LGA (NOT using announced_lga_results table).</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">LGA selection dropdown</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Sum from announced_pu_results</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Total votes per party</span>
+                        </div>
+                    </div>
+                    <button onclick="testQuestion2()" class="mt-4 w-full bg-inec-green text-white px-4 py-2 rounded hover:bg-green-700">
+                        Test Question 2
                     </button>
-                    <button onclick="loadQuestion2()" class="bg-inec-green text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
-                        Q2: LGA Summed Results
-                    </button>
-                    <button onclick="loadQuestion3()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
-                        Q3: Add New Polling Unit Results
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-purple-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">Question 3</h2>
+                    <p class="text-purple-100">Add New Polling Unit Results</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 mb-4">Store results for ALL parties for a new polling unit with chained selects and input fields.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Chained selects (LGA → Ward → PU)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Input fields for all parties</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                            <span class="text-sm">Insert into announced_pu_results</span>
+                        </div>
+                    </div>
+                    <button onclick="testQuestion3()" class="mt-4 w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                        Test Question 3
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Demo Container -->
-        <div id="demo-container" class="bg-white shadow-lg rounded-lg min-h-96">
-            <div class="p-6">
-                <div class="text-center text-gray-500">
-                    <h3 class="text-xl font-semibold mb-2">Select a Question Above to View Live Demo</h3>
-                    <p>Each demo will load the actual functionality from the Railway backend</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Technical Overview -->
-        <div class="bg-white shadow-lg rounded-lg mt-8 overflow-hidden">
-            <div class="bg-gray-800 text-white px-6 py-4">
-                <h2 class="text-2xl font-bold">Architecture Overview</h2>
-                <p class="text-gray-300 mt-2">Frontend on GitHub Pages + Backend on Railway</p>
-            </div>
-            <div class="p-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Frontend -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-3 text-gray-900">Frontend (GitHub Pages)</h3>
-                        <ul class="space-y-2 text-sm text-gray-700">
-                            <li>• Static HTML/CSS/JavaScript</li>
-                            <li>• Tailwind CSS for styling</li>
-                            <li>• AJAX calls to Railway backend</li>
-                            <li>• Free hosting on GitHub Pages</li>
-                            <li>• Custom domain support</li>
-                        </ul>
-                    </div>
-
-                    <!-- Backend -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-3 text-gray-900">Backend (Railway)</h3>
-                        <ul class="space-y-2 text-sm text-gray-700">
-                            <li>• PHP API endpoints</li>
-                            <li>• MySQL database</li>
-                            <li>• PDO for database operations</li>
-                            <li>• CORS enabled for frontend</li>
-                            <li>• Free tier available</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Setup Instructions -->
-        <div class="bg-white shadow-lg rounded-lg mt-8 overflow-hidden">
-            <div class="bg-yellow-600 text-white px-6 py-4">
-                <h2 class="text-2xl font-bold">Setup Instructions</h2>
-                <p class="text-yellow-100 mt-2">How to deploy this architecture</p>
-            </div>
-            <div class="p-6">
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2 text-gray-900">1. Deploy Backend to Railway</h3>
-                        <div class="bg-gray-100 p-4 rounded text-sm font-mono">
-                            <div># Create railway.json</div>
-                            <div>{</div>
-                            <div class="ml-4">"build": {</div>
-                            <div class="ml-8">"builder": "NIXPACKS"</div>
-                            <div class="ml-4">},</div>
-                            <div class="ml-4">"deploy": {</div>
-                            <div class="ml-8">"startCommand": "php -S 0.0.0.0:$PORT"</div>
-                            <div class="ml-4">}</div>
-                            <div>}</div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2 text-gray-900">2. Deploy Frontend to GitHub Pages</h3>
-                        <div class="bg-gray-100 p-4 rounded text-sm">
-                            <div>1. Push this folder to GitHub repository</div>
-                            <div>2. Go to Settings → Pages</div>
-                            <div>3. Select source branch (main)</div>
-                            <div>4. Update API_BASE_URL in JavaScript</div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2 text-gray-900">3. Environment Variables</h3>
-                        <div class="bg-gray-100 p-4 rounded text-sm">
-                            <div>Railway Backend:</div>
-                            <div>• DB_HOST, DB_NAME, DB_USER, DB_PASS</div>
-                            <div>• CORS_ORIGIN (your GitHub Pages URL)</div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Test Results -->
+        <div id="test-results" class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">Test Results</h2>
+            <div id="test-output" class="text-gray-500">
+                Click on any question above to test the API endpoints.
             </div>
         </div>
     </div>
 
     <script>
-        // Configuration
-        const API_BASE_URL = 'https://inec-result-production.up.railway.app';
+        // Configuration - Update this with your Vercel URL after deployment
+        const API_BASE_URL = 'https://your-vercel-app.vercel.app';
         
         // Check backend connection
         async function checkBackendStatus() {
             try {
-                // Try basic test first (plain text)
-                const basicResponse = await fetch(`${API_BASE_URL}/basic-test.php`);
-                if (basicResponse.ok) {
-                    const basicText = await basicResponse.text();
-                    console.log('Basic test response:', basicText);
-                    
-                    // Now try JSON test
-                    const jsonResponse = await fetch(`${API_BASE_URL}/simple-test.php`);
-                    if (jsonResponse.ok) {
-                        const data = await jsonResponse.json();
-                        document.getElementById('backend-status').innerHTML = 
-                            `<span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Connected to Railway backend (${data.php_version})`;
-                    } else {
-                        document.getElementById('backend-status').innerHTML = 
-                            `<span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>Connected but JSON test failed - ${basicText}`;
-                    }
+                const response = await fetch(`${API_BASE_URL}/api/health.php`);
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('backend-status').innerHTML = 
+                        `<span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Connected to Vercel backend (${data.php_version})`;
                 } else {
-                    throw new Error('Basic test failed');
+                    throw new Error('Backend not responding');
                 }
             } catch (error) {
                 document.getElementById('backend-status').innerHTML = 
-                    '<span class="inline-block w-3 h-3 bg-red-400 rounded-full mr-2"></span>Backend connection failed - Check Railway deployment';
+                    '<span class="inline-block w-3 h-3 bg-red-400 rounded-full mr-2"></span>Backend connection failed - Deploy to Vercel first';
                 console.error('Backend error:', error);
             }
         }
 
-        // Load Question 1 Demo
-        async function loadQuestion1() {
-            const container = document.getElementById('demo-container');
-            container.innerHTML = `
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold mb-4">Question 1: Individual Polling Unit Results</h2>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="mb-4">This would load the actual polling unit results page from Railway backend.</p>
-                        <div class="text-center">
-                            <a href="${API_BASE_URL}/show_polling_unit.php" target="_blank" 
-                               class="bg-inec-blue text-white px-6 py-2 rounded hover:bg-blue-700">
-                                Open Live Demo →
-                            </a>
-                        </div>
+        // Test Question 1
+        async function testQuestion1() {
+            const output = document.getElementById('test-output');
+            output.innerHTML = '<div class="text-blue-600">Testing Question 1 API...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/question1.php`);
+                const data = await response.json();
+                output.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 rounded p-4">
+                        <h3 class="font-semibold text-green-800">Question 1 API Response:</h3>
+                        <pre class="mt-2 text-sm text-green-700">${JSON.stringify(data, null, 2)}</pre>
                     </div>
-                </div>
-            `;
+                `;
+            } catch (error) {
+                output.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 rounded p-4">
+                        <h3 class="font-semibold text-red-800">Question 1 Error:</h3>
+                        <p class="text-red-700">${error.message}</p>
+                    </div>
+                `;
+            }
         }
 
-        // Load Question 2 Demo
-        async function loadQuestion2() {
-            const container = document.getElementById('demo-container');
-            container.innerHTML = `
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold mb-4">Question 2: LGA Summed Results</h2>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="mb-4">This would load the actual LGA summed results page from Railway backend.</p>
-                        <div class="text-center">
-                            <a href="${API_BASE_URL}/show_lga_sum.php" target="_blank" 
-                               class="bg-inec-green text-white px-6 py-2 rounded hover:bg-green-700">
-                                Open Live Demo →
-                            </a>
-                        </div>
+        // Test Question 2
+        async function testQuestion2() {
+            const output = document.getElementById('test-output');
+            output.innerHTML = '<div class="text-blue-600">Testing Question 2 API...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/question2.php`);
+                const data = await response.json();
+                output.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 rounded p-4">
+                        <h3 class="font-semibold text-green-800">Question 2 API Response:</h3>
+                        <pre class="mt-2 text-sm text-green-700">${JSON.stringify(data, null, 2)}</pre>
                     </div>
-                </div>
-            `;
+                `;
+            } catch (error) {
+                output.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 rounded p-4">
+                        <h3 class="font-semibold text-red-800">Question 2 Error:</h3>
+                        <p class="text-red-700">${error.message}</p>
+                    </div>
+                `;
+            }
         }
 
-        // Load Question 3 Demo
-        async function loadQuestion3() {
-            const container = document.getElementById('demo-container');
-            container.innerHTML = `
-                <div class="p-6">
-                    <h2 class="text-2xl font-bold mb-4">Question 3: Add New Polling Unit Results</h2>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="mb-4">This would load the actual add results form from Railway backend.</p>
-                        <div class="text-center">
-                            <a href="${API_BASE_URL}/add_polling_unit.php" target="_blank" 
-                               class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">
-                                Open Live Demo →
-                            </a>
-                        </div>
+        // Test Question 3
+        async function testQuestion3() {
+            const output = document.getElementById('test-output');
+            output.innerHTML = '<div class="text-blue-600">Testing Question 3 API...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/question3.php`);
+                const data = await response.json();
+                output.innerHTML = `
+                    <div class="bg-green-50 border border-green-200 rounded p-4">
+                        <h3 class="font-semibold text-green-800">Question 3 API Response:</h3>
+                        <pre class="mt-2 text-sm text-green-700">${JSON.stringify(data, null, 2)}</pre>
                     </div>
-                </div>
-            `;
+                `;
+            } catch (error) {
+                output.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 rounded p-4">
+                        <h3 class="font-semibold text-red-800">Question 3 Error:</h3>
+                        <p class="text-red-700">${error.message}</p>
+                    </div>
+                `;
+            }
         }
 
         // Initialize
