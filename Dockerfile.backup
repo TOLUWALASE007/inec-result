@@ -14,11 +14,8 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html
 
-# Make start script executable
-RUN chmod +x start.sh
-
 # Expose port
 EXPOSE 8000
 
-# Start using the start script
-CMD ["./start.sh"]
+# Start PHP server directly from public directory
+CMD ["sh", "-c", "cd public && php -S 0.0.0.0:8000"]
