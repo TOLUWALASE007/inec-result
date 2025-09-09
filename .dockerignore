@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+RAILWAY_DEPLOYMENT.md
+DEPLOYMENT.md
+TESTING_GUIDE.md
+*.md
+.env
+.env.example
+node_modules
+.DS_Store
+Thumbs.db
