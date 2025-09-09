@@ -3,7 +3,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "cd public && php -S 0.0.0.0:$PORT",
+    "startCommand": "php server.php",
     "healthcheckPath": "/api/health.php",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
