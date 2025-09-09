@@ -1,5 +1,5 @@
 <?php
-// Simple test endpoint without database dependency
+// Basic test endpoint - plain text response
 // Start output buffering to ensure headers are sent first
 ob_start();
 
@@ -8,7 +8,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header('Access-Control-Max-Age: 86400');
-header('Content-Type: application/json');
+header('Content-Type: text/plain');
 
 // Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -17,14 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-echo json_encode([
-    'status' => 'success',
-    'message' => 'Railway PHP server is working!',
-    'php_version' => phpversion(),
-    'server_time' => date('Y-m-d H:i:s'),
-    'request_method' => $_SERVER['REQUEST_METHOD'],
-    'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown'
-]);
+echo "Railway PHP server is working!\n";
+echo "PHP Version: " . phpversion() . "\n";
+echo "Server Time: " . date('Y-m-d H:i:s') . "\n";
+echo "Request Method: " . $_SERVER['REQUEST_METHOD'] . "\n";
 
 // Flush output buffer
 ob_end_flush();

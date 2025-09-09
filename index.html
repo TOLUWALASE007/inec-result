@@ -163,14 +163,24 @@
         // Check backend connection
         async function checkBackendStatus() {
             try {
-                // Try simple test first
-                const response = await fetch(`${API_BASE_URL}/simple-test.php`);
-                if (response.ok) {
-                    const data = await response.json();
-                    document.getElementById('backend-status').innerHTML = 
-                        `<span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Connected to Railway backend (${data.php_version})`;
+                // Try basic test first (plain text)
+                const basicResponse = await fetch(`${API_BASE_URL}/basic-test.php`);
+                if (basicResponse.ok) {
+                    const basicText = await basicResponse.text();
+                    console.log('Basic test response:', basicText);
+                    
+                    // Now try JSON test
+                    const jsonResponse = await fetch(`${API_BASE_URL}/simple-test.php`);
+                    if (jsonResponse.ok) {
+                        const data = await jsonResponse.json();
+                        document.getElementById('backend-status').innerHTML = 
+                            `<span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Connected to Railway backend (${data.php_version})`;
+                    } else {
+                        document.getElementById('backend-status').innerHTML = 
+                            `<span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>Connected but JSON test failed - ${basicText}`;
+                    }
                 } else {
-                    throw new Error('Backend not responding');
+                    throw new Error('Basic test failed');
                 }
             } catch (error) {
                 document.getElementById('backend-status').innerHTML = 
