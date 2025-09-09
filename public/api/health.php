@@ -1,8 +1,9 @@
 <?php
-header('Content-Type: application/json');
+// CORS headers
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+header('Content-Type: application/json');
 
 // Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -16,10 +17,26 @@ try {
     // Test database connection
     $stmt = $pdo->query("SELECT 1");
     
+    // Get some basic stats
+    $lgaCount = $pdo->query("SELECT COUNT(*) FROM lga WHERE state_id = 25")->fetchColumn();
+    $puCount = $pdo->query("SELECT COUNT(*) FROM polling_unit")->fetchColumn();
+    $resultCount = $pdo->query("SELECT COUNT(*) FROM announced_pu_results")->fetchColumn();
+    
     echo json_encode([
         'status' => 'success',
-        'message' => 'Backend is running',
+        'message' => 'INEC Results Portal Backend is running',
         'database' => 'connected',
+        'stats' => [
+            'lgas' => (int)$lgaCount,
+            'polling_units' => (int)$puCount,
+            'results' => (int)$resultCount
+        ],
+        'endpoints' => [
+            'health' => '/api/health.php',
+            'question1' => '/show_polling_unit.php',
+            'question2' => '/show_lga_sum.php',
+            'question3' => '/add_polling_unit.php'
+        ],
         'timestamp' => date('Y-m-d H:i:s')
     ]);
 } catch (Exception $e) {
