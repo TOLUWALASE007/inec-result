@@ -4,7 +4,7 @@
   "description": "INEC Election Results Portal - PHP Backend",
   "main": "public/index.php",
   "scripts": {
-    "start": "php -S 0.0.0.0:$PORT -t public",
+    "start": "php -S 0.0.0.0:$PORT",
     "dev": "php -S 0.0.0.0:8000 -t public"
   },
   "engines": {
