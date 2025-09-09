@@ -1,5 +1,4 @@
-Dockerfile
-Dockerfile.backup
+Dockerfile*
 .git
 .gitignore
 README.md

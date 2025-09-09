@@ -1,0 +1,16 @@
+{
+  "name": "inec-results-portal",
+  "version": "1.0.0",
+  "description": "INEC Election Results Portal - PHP Backend",
+  "main": "public/index.php",
+  "scripts": {
+    "start": "cd public && php -S 0.0.0.0:$PORT",
+    "dev": "cd public && php -S 0.0.0.0:8000"
+  },
+  "engines": {
+    "php": ">=7.4"
+  },
+  "keywords": ["php", "election", "results", "inec", "railway"],
+  "author": "INEC Results Portal",
+  "license": "MIT"
+}

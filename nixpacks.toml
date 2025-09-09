@@ -1,11 +1,11 @@
 [phases.setup]
-nixPkgs = ["php"]
+nixPkgs = ["php", "phpPackages.composer"]
 
 [phases.install]
-cmds = ["echo 'No additional installation needed'"]
+cmds = ["echo 'Installing PHP dependencies...'"]
 
 [phases.build]
-cmds = ["echo 'Build complete'"]
+cmds = ["echo 'Build complete - PHP application ready'"]
 
 [start]
 cmd = "cd public && php -S 0.0.0.0:$PORT"
