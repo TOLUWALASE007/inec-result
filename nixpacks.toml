@@ -8,4 +8,4 @@ cmds = ["echo 'No additional installation needed'"]
 cmds = ["echo 'Build complete - PHP application ready'"]
 
 [start]
-cmd = "php -S 0.0.0.0:$PORT"
+cmd = "php server.php"

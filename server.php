@@ -1,22 +1,16 @@
 <?php
-// Simple PHP server entry point for Railway
-// This file starts the PHP built-in server
+// Railway-compatible PHP server script
+// This script starts the PHP built-in server with proper host and port binding
 
-// Set CORS headers first
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-
-// Change to public directory
-chdir('public');
-
-// Start the server
-$host = '0.0.0.0';
+// Get the PORT environment variable from Railway
 $port = $_ENV['PORT'] ?? 8000;
 
-echo "Starting PHP server on $host:$port\n";
-echo "Document root: " . getcwd() . "\n";
+// Start the PHP built-in server
+// Bind to 0.0.0.0 (all interfaces) and use Railway's PORT
+$command = "php -S 0.0.0.0:$port";
+echo "Starting PHP server: $command\n";
+echo "Server will be available at: http://0.0.0.0:$port\n";
 
-// Start the built-in server
-passthru("php -S $host:$port");
+// Execute the command
+passthru($command);
 ?>
