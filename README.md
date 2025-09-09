@@ -2,6 +2,12 @@
 
 A PHP application for displaying and managing INEC (Independent National Electoral Commission) election results for Delta State.
 
+## 🌐 Live Demo
+
+**Frontend (GitHub Pages)**: [View Live Demo](https://toluwalase007.github.io/inec-result)
+
+**Backend (Railway)**: Coming soon...
+
 ## Features
 
 - **Individual Polling Unit Results (Q1)**: View detailed results for any specific polling unit
@@ -115,6 +121,23 @@ The application uses the following key tables:
 
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - JavaScript enabled for chained select functionality
+
+## 🚀 GitHub Pages Deployment
+
+This repository is configured for GitHub Pages deployment:
+
+1. **Frontend**: The `index.html` file in the root directory serves as the main GitHub Pages site
+2. **Backend**: Deploy the PHP backend to Railway or similar service
+3. **Configuration**: Update the `API_BASE_URL` in `index.html` with your backend URL
+
+### Quick Setup:
+1. Go to repository **Settings** → **Pages**
+2. Select **Source**: Deploy from a branch
+3. Select **Branch**: main
+4. Select **Folder**: / (root)
+5. Click **Save**
+
+Your site will be available at: `https://toluwalase007.github.io/inec-result`
 
 ## License
 
