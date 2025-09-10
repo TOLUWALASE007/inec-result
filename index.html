@@ -147,7 +147,7 @@
 
     <script>
         // Configuration - Update this with your Vercel URL after deployment
-        const API_BASE_URL = 'https://your-vercel-app.vercel.app';
+        const API_BASE_URL = 'https://inec-results-portal.vercel.app';
         
         // Check backend connection
         async function checkBackendStatus() {
@@ -162,7 +162,7 @@
                 }
             } catch (error) {
                 document.getElementById('backend-status').innerHTML = 
-                    '<span class="inline-block w-3 h-3 bg-red-400 rounded-full mr-2"></span>Backend connection failed - Deploy to Vercel first';
+                    '<span class="inline-block w-3 h-3 bg-red-400 rounded-full mr-2"></span>Backend connection failed - Check Vercel deployment';
                 console.error('Backend error:', error);
             }
         }
