@@ -1,15 +1,16 @@
 {
   "name": "inec-results-portal",
   "version": "1.0.0",
-  "description": "INEC Election Results Portal - PHP Backend",
-  "main": "api/index.php",
+  "description": "INEC Election Results Portal - PHP Backend with Node.js Frontend",
+  "main": "index.js",
   "scripts": {
-    "start": "php -S 0.0.0.0:8000 -t api"
+    "start": "node index.js"
   },
   "engines": {
+    "node": ">=18.0.0",
     "php": ">=7.4"
   },
-  "keywords": ["php", "election", "results", "inec", "vercel"],
+  "keywords": ["php", "node", "election", "results", "inec", "vercel"],
   "author": "INEC Results Portal",
   "license": "MIT"
 }
