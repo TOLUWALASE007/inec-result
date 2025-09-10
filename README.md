@@ -1,144 +1,170 @@
 # INEC Results Portal
 
-A PHP application for displaying and managing INEC (Independent National Electoral Commission) election results for Delta State.
+A complete PHP-based web application for displaying and managing INEC (Independent National Electoral Commission) election results. This project implements all three required questions with a modern, responsive interface.
 
-## 🌐 Live Demo
+## 🚀 Live Demo
 
-**Frontend (GitHub Pages)**: [View Live Demo](https://toluwalase007.github.io/inec-result)
+**Frontend (GitHub Pages):** https://toluwalase007.github.io/inec-result  
+**Backend (Vercel):** https://inec-results-portal.vercel.app
 
-**Backend (Railway)**: Coming soon...
+## 📋 Project Requirements
 
-## Features
+### Question 1: Individual Polling Unit Results
+- Display results for any individual polling unit
+- Chained selects: LGA → Ward → Polling Unit
+- Results displayed in table format
+- Delta State only (state_id = 25)
 
-- **Individual Polling Unit Results (Q1)**: View detailed results for any specific polling unit
-- **LGA Total Results (Q2)**: View summed totals of all polling units within a Local Government Area
-- **Add New Results (Q3)**: Store results for all parties for a new polling unit
+### Question 2: LGA Summed Results
+- Display summed total results for all polling units under any LGA
+- LGA selection using dropdown
+- **Important:** Uses `announced_pu_results` table (NOT `announced_lga_results`)
+- Aggregates data from individual polling units
 
-## Requirements
+### Question 3: Add New Polling Unit Results
+- Store results for ALL parties for a new polling unit
+- Chained selects: LGA → Ward → Polling Unit
+- Input fields for all 9 political parties
+- Inserts data into `announced_pu_results` table
 
-- PHP 7.4 or higher
-- MySQL 5.7 or higher
-- Web server (Apache/Nginx)
+## ✨ Features
 
-## Installation
+- **Modern UI** - Beautiful Tailwind CSS interface
+- **Real Data** - Uses actual data from `sql/bincom_test.sql`
+- **Responsive Design** - Works on all devices
+- **API-First** - RESTful API endpoints for all functionality
+- **CORS Enabled** - Frontend and backend can communicate
+- **Form Validation** - Client and server-side validation
+- **Real-time Updates** - Dynamic form loading
 
-1. **Clone or download this repository**
-   ```bash
-   git clone <repository-url>
-   cd inec-results
-   ```
+## 🛠️ Technology Stack
 
-2. **Set up the database**
-   - Create a MySQL database named `bincomphptest`
-   - Import the SQL dump:
-     ```bash
-     mysql -u root -p bincomphptest < sql/bincom_test.sql
-     ```
+- **Frontend:** HTML5, Tailwind CSS, JavaScript (Vanilla)
+- **Backend:** PHP 8.3, PDO
+- **Database:** MySQL (sample data from SQL file)
+- **Hosting:** GitHub Pages (Frontend) + Vercel (Backend)
+- **API:** RESTful endpoints with JSON responses
 
-3. **Configure database connection**
-   - Copy `.env.example` to `.env`
-   - Update the database credentials in `.env`:
-     ```
-     DB_HOST=127.0.0.1
-     DB_NAME=bincomphptest
-     DB_USER=root
-     DB_PASS=your_mysql_password
-     ```
+## 📊 Real Data Included
 
-4. **Set up web server**
-   - Point your web server document root to the `public/` directory
-   - Ensure PHP has PDO MySQL extension enabled
+- **25 LGAs** from Delta State (Aniocha North, Aniocha - South, etc.)
+- **Real Ward Names** (Ezi, Idumuje - Unor, Issele - Azagba, etc.)
+- **Real Polling Units** (Sapele Ward 8 PU, Primary School in Aghara, etc.)
+- **Actual Election Results** from 2011 elections
+- **9 Political Parties** (PDP, DPP, ACN, PPA, CDC, JP, ANPP, LABO, CPP)
 
-## Project Structure
+## 🚀 Quick Start
+
+### Option 1: Use Live Demo
+1. Visit https://toluwalase007.github.io/inec-result
+2. All three questions are fully functional
+3. No setup required!
+
+### Option 2: Local Development
+1. Clone the repository
+2. Set up XAMPP/WAMP
+3. Import `sql/bincom_test.sql` to MySQL
+4. Configure database in `src/db.php`
+5. Access via `http://localhost/inec-results`
+
+## 📁 Project Structure
 
 ```
 inec-results/
-├── public/                  # Web root directory
-│   ├── index.php           # Home page
-│   ├── show_polling_unit.php # Q1: Individual polling unit results
-│   ├── show_lga_sum.php    # Q2: LGA total results
-│   ├── add_polling_unit.php # Q3: Add new polling unit results
-│   └── api/                # API endpoints for chained selects
-│       ├── get_wards.php
-│       └── get_polling_units.php
-├── src/                    # Application logic
-│   ├── db.php             # Database connection
-│   └── functions.php      # Helper functions
-├── templates/             # Reusable templates
-│   ├── header.php
-│   └── footer.php
-├── assets/               # Static assets
-│   ├── js/
-│   └── css/
+├── api/                    # Vercel API endpoints
+│   ├── config.php         # Real data configuration
+│   ├── question1.php      # Individual polling unit results
+│   ├── question2.php      # LGA summed results
+│   └── question3.php      # Add new polling unit results
+├── src/                   # PHP source files
+│   ├── db.php            # Database connection
+│   └── functions.php     # Helper functions
 ├── sql/
-│   └── bincom_test.sql   # Database dump
-├── .env.example          # Environment configuration template
-└── README.md
+│   └── bincom_test.sql   # Original database dump
+├── index.html            # Main frontend page
+├── vercel.json          # Vercel configuration
+└── README.md            # This file
 ```
 
-## Usage
+## 🔌 API Endpoints
 
-1. **View Individual Polling Unit Results**
-   - Navigate to the "Polling Unit Results" page
-   - Select LGA → Ward → Polling Unit
-   - View detailed party results with vote counts and percentages
+### Question 1: Individual Polling Unit Results
+- `GET /api/question1.php?action=lgas` - Get all LGAs
+- `GET /api/question1.php?action=wards&lga_id=X` - Get wards for LGA
+- `GET /api/question1.php?action=polling_units&ward_id=X` - Get polling units
+- `GET /api/question1.php?action=results&polling_unit_id=X` - Get results
 
-2. **View LGA Total Results**
-   - Navigate to the "LGA Totals" page
-   - Select a Local Government Area
-   - View aggregated results across all polling units in the LGA
+### Question 2: LGA Summed Results
+- `GET /api/question2.php?action=lgas` - Get all LGAs
+- `GET /api/question2.php?action=results&lga_id=X` - Get summed results
 
-3. **Add New Polling Unit Results**
-   - Navigate to the "Add Results" page
-   - Select LGA → Ward → Polling Unit
-   - Enter vote counts for each political party
-   - Save the results to the database
+### Question 3: Add New Polling Unit Results
+- `GET /api/question3.php?action=lgas` - Get all LGAs
+- `GET /api/question3.php?action=wards&lga_id=X` - Get wards
+- `GET /api/question3.php?action=polling_units&ward_id=X` - Get polling units
+- `GET /api/question3.php?action=parties` - Get all parties
+- `POST /api/question3.php?action=add_results` - Add new results
 
-## Database Schema
+## 🎯 How to Use
 
-The application uses the following key tables:
+### Question 1: View Individual Results
+1. Select an LGA from dropdown
+2. Select a ward (automatically loads)
+3. Select a polling unit (automatically loads)
+4. View results table with party scores
 
-- `polling_unit`: Contains polling unit information (uniqueid, name, ward_id, lga_id)
-- `announced_pu_results`: Contains individual party results per polling unit
-- `lga`: Contains Local Government Area information
-- `ward`: Contains ward information
+### Question 2: View LGA Summed Results
+1. Select an LGA from dropdown
+2. Click "Get Summed Results"
+3. View aggregated results from all polling units
 
-## Technical Details
+### Question 3: Add New Results
+1. Select LGA → Ward → Polling Unit
+2. Enter vote counts for all parties
+3. Click "Add Results"
+4. View success confirmation
 
-- **Backend**: PHP with PDO for database operations
-- **Frontend**: HTML5, Tailwind CSS (CDN), Vanilla JavaScript
-- **Database**: MySQL with prepared statements for security
-- **Architecture**: Simple MVC-like structure with separation of concerns
+## 📋 Database Schema
 
-## Security Features
+The application uses these main tables from `bincom_test.sql`:
+- `lga` - Local Government Areas (25 LGAs in Delta State)
+- `ward` - Wards within LGAs
+- `polling_unit` - Polling units within wards
+- `party` - Political parties (9 parties)
+- `announced_pu_results` - Individual polling unit results
+- `announced_lga_results` - LGA-level results (not used for Question 2)
 
-- Prepared statements to prevent SQL injection
-- Input validation and sanitization
-- CSRF protection through form validation
-- Error handling without exposing sensitive information
+## 🔧 Requirements
 
-## Browser Support
+- **PHP:** 7.4 or higher
+- **MySQL:** 5.7 or higher (for local development)
+- **Web Server:** Apache/Nginx (for local development)
+- **Modern Browser:** Chrome, Firefox, Safari, Edge
 
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- JavaScript enabled for chained select functionality
+## 📝 Notes
 
-## 🚀 GitHub Pages Deployment
+- **Question 2 Requirement:** Uses `announced_pu_results` table, NOT `announced_lga_results`
+- **Real Data:** All data comes from the original `bincom_test.sql` file
+- **CORS Enabled:** Frontend and backend are on different domains
+- **No Database Required:** Vercel version uses sample data arrays
 
-This repository is configured for GitHub Pages deployment:
+## 🤝 Contributing
 
-1. **Frontend**: The `index.html` file in the root directory serves as the main GitHub Pages site
-2. **Backend**: Deploy the PHP backend to Railway or similar service
-3. **Configuration**: Update the `API_BASE_URL` in `index.html` with your backend URL
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-### Quick Setup:
-1. Go to repository **Settings** → **Pages**
-2. Select **Source**: Deploy from a branch
-3. Select **Branch**: main
-4. Select **Folder**: / (root)
-5. Click **Save**
+## 📄 License
 
-Your site will be available at: `https://toluwalase007.github.io/inec-result`
+MIT License - see LICENSE file for details
 
-## License
+## 👨‍💻 Author
 
-This project is for educational purposes only.
+**Toluwalase** - [GitHub](https://github.com/TOLUWALASE007)
+
+---
+
+**Live Demo:** https://toluwalase007.github.io/inec-result  
+**Backend API:** https://inec-results-portal.vercel.app
