@@ -34,18 +34,15 @@ try {
                 throw new Exception('LGA ID is required');
             }
             
-            // Sample wards data
-            $sample_wards = [
-                ['id' => 1, 'name' => 'Ward 1', 'lga_id' => $lga_id],
-                ['id' => 2, 'name' => 'Ward 2', 'lga_id' => $lga_id],
-                ['id' => 3, 'name' => 'Ward 3', 'lga_id' => $lga_id],
-                ['id' => 4, 'name' => 'Ward 4', 'lga_id' => $lga_id],
-                ['id' => 5, 'name' => 'Ward 5', 'lga_id' => $lga_id]
-            ];
+            // Get real wards data from config
+            $data = getSampleData();
+            $wards = array_filter($data['wards'], function($ward) use ($lga_id) {
+                return $ward['lga_id'] == $lga_id;
+            });
             
             echo json_encode([
                 'status' => 'success',
-                'data' => $sample_wards,
+                'data' => array_values($wards),
                 'message' => 'Wards for LGA ' . $lga_id . ' retrieved successfully'
             ]);
             break;
@@ -57,16 +54,15 @@ try {
                 throw new Exception('Ward ID is required');
             }
             
-            // Sample polling units data
-            $sample_polling_units = [
-                ['id' => 1, 'name' => 'Polling Unit 1', 'ward_id' => $ward_id, 'uniqueid' => 'PU001'],
-                ['id' => 2, 'name' => 'Polling Unit 2', 'ward_id' => $ward_id, 'uniqueid' => 'PU002'],
-                ['id' => 3, 'name' => 'Polling Unit 3', 'ward_id' => $ward_id, 'uniqueid' => 'PU003']
-            ];
+            // Get real polling units data from config
+            $data = getSampleData();
+            $polling_units = array_filter($data['polling_units'], function($pu) use ($ward_id) {
+                return $pu['ward_id'] == $ward_id;
+            });
             
             echo json_encode([
                 'status' => 'success',
-                'data' => $sample_polling_units,
+                'data' => array_values($polling_units),
                 'message' => 'Polling units for Ward ' . $ward_id . ' retrieved successfully'
             ]);
             break;
