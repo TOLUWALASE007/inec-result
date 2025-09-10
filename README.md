@@ -4,8 +4,7 @@ A complete PHP-based web application for displaying and managing INEC (Independe
 
 ## 🚀 Live Demo
 
-**Frontend (GitHub Pages):** https://toluwalase007.github.io/inec-result  
-**Backend (Vercel):** https://inec-results-portal.vercel.app
+**Complete Application (Vercel):** https://inec-results-portal.vercel.app
 
 ## 📋 Project Requirements
 
@@ -42,7 +41,7 @@ A complete PHP-based web application for displaying and managing INEC (Independe
 - **Frontend:** HTML5, Tailwind CSS, JavaScript (Vanilla)
 - **Backend:** PHP 8.3, PDO
 - **Database:** MySQL (sample data from SQL file)
-- **Hosting:** GitHub Pages (Frontend) + Vercel (Backend)
+- **Hosting:** Vercel (Complete Application)
 - **API:** RESTful endpoints with JSON responses
 
 ## 📊 Real Data Included
@@ -56,7 +55,7 @@ A complete PHP-based web application for displaying and managing INEC (Independe
 ## 🚀 Quick Start
 
 ### Option 1: Use Live Demo
-1. Visit https://toluwalase007.github.io/inec-result
+1. Visit https://inec-results-portal.vercel.app
 2. All three questions are fully functional
 3. No setup required!
 
@@ -145,7 +144,7 @@ The application uses these main tables from `bincom_test.sql`:
 
 - **Question 2 Requirement:** Uses `announced_pu_results` table, NOT `announced_lga_results`
 - **Real Data:** All data comes from the original `bincom_test.sql` file
-- **CORS Enabled:** Frontend and backend are on different domains
+- **Single Deployment:** Frontend and backend on same Vercel domain
 - **No Database Required:** Vercel version uses sample data arrays
 
 ## 🤝 Contributing
@@ -166,5 +165,4 @@ MIT License - see LICENSE file for details
 
 ---
 
-**Live Demo:** https://toluwalase007.github.io/inec-result  
-**Backend API:** https://inec-results-portal.vercel.app
+**Live Demo:** https://inec-results-portal.vercel.app
